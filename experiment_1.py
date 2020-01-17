@@ -28,6 +28,7 @@ class Model(nn.Module):
         x = self.conv(x)
         x = torch.sigmoid(x)
 
+        # Find most similar feature map in keys, use it's index to get the module from modulelist
         args = [torch.cosine_similarity(x.flatten(), key.flatten(), dim=0) for key in self.keys]
         argmax = torch.argmax(torch.Tensor(args))
         x = self.modulelist[argmax](x)
