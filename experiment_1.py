@@ -21,7 +21,7 @@ class Model(nn.Module):
         self.conv = torch.nn.Conv2d(3, 3, kernel_size=(3, 3), stride=3, padding=1)
 
         self.keys = nn.ParameterList(
-            [nn.Parameter(torch.randn((1, 3, 22, 22)), requires_grad=True) for x in range(1)])
+            [nn.Parameter(torch.randn((1, 3, 22, 22)), requires_grad=True) for x in range(10)])
         self.modulelist = nn.ModuleList(Module() for x in range(10))
 
     def forward(self, x):
@@ -40,7 +40,7 @@ try:
     env = gym.make("procgen:procgen-coinrun-v0")
     net = Model()
     window = Window()
-    optimizer = torch.optim.SGD(net.parameters(), lr=0.5)
+    optimizer = torch.optim.SGD(net.parameters(), lr=0.05)
     criterion = nn.MSELoss()
     for i_episode in range(20000):
         gym.make("procgen:procgen-coinrun-v0")
