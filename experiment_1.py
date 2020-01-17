@@ -1,7 +1,7 @@
 import gym
 import torch
 from torch import nn
-from learn.window import Window
+from window import Window
 
 class Module(nn.Module):
     def __init__(self):
